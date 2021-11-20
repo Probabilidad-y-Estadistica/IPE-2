@@ -40,4 +40,20 @@ nivelconfianza = 0.90
 
 zsum.test(mean.x=32,sigma.x=6, n.x=50,conf.level=0.90)
 
+# EJ 2
+alfa = 0.01
+sigma = 16
+mu0 = -4
+sqrt_n = sqrt(50)
+z = pnorm(alfa/2)
+no_rc = 0
+for(i in v){
+  rc = abs(i - mu0) > ((sigma * z * (alfa / 2)) / sqrt_n)
+  if(rc) {
+    no_rc = no_rc + 1
+  }
+}
+# Propoción de rechazo
+no_rc_prop = (no_rc / 10^4) 
+
 
