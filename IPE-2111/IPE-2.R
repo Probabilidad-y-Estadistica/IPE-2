@@ -69,3 +69,12 @@ for(Xn in v){
     prop = prop + 1
   }
 }
+
+#X = numero de exitos de la muestra
+prop.test(no_rc_prop,n=50,p=0.9, alternative='less', conf.level = 0.95, correct= FALSE)
+
+
+#C)
+no = qnorm((abs(x_techo - mu0)*sqrt(50))/16)*2
+
+
