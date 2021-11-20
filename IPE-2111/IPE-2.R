@@ -1,6 +1,5 @@
+library(BSDA)
 v = (1:10^4)
-
-
 for(i in 1:10^4){
   z=rnorm(1, mean=-4, sd=sqrt(16)/50)
   v[i] <- z
@@ -33,11 +32,20 @@ legend("topleft",
 #Falta arreglarr NORMAL ESTANDAR
 #Parte c)
 #10^4 intervalos de confianza con confianza 95%
-n <- 50    # El tamaño válido de la muestra
-media <- 32 # la media 
-desv <- 6  # La desviación estándar. Datos históricos
-nivelconfianza = 0.90
+#Para armar el intervalo de confianza
+n <- 15   # El tamaño válido de la muestra
+media <- 5 # la media 
+nivelconfianza = 0.95
+desv <- sqrt(16)  # utilizo la raíz cuadrada porque me dan como dato la varianza 
+#y la fórmula del error estándar utiliza la desvío típico.
+qt(0.005,14) # donde 14 son los grados de libertad. GL = n – 1  = 15 - 1 = 14
+error.est <- desv/sqrt(n) # Calculamos el error estándar
+margen.error <- 2.97 * error.est # nivel de confianza de 99% 
+lim.inf <- media - margen.error # Límite inferior del intervalo
+lim.inf
+lim.sup <- media + margen.error # Límite superior del intervalo
+lim.sup
+tsum.test(mean.x=5,s.x=sqrt(2),n.x=15,conf.level=0.99)
 
-zsum.test(mean.x=32,sigma.x=6, n.x=50,conf.level=0.90)
 
 
