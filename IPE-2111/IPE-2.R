@@ -24,7 +24,8 @@ lines(s,
 polygon(s, 
         dnorm(s, mean = -4, sd = sqrt(16)/50), 
         col = rgb(1, 0, 0, alpha = 0.5))
-# Por último agregamos una leyenda para visualizar claramente los resultados  y cambiamos la escala del eje
+# Por último agregamos una leyenda para visualizar claramente los resultados  
+# y cambiamos la escala del eje
 axis(1, at=s,las=1)
 legend("topleft", 
        legend = c("Promedio estandarizado",
@@ -41,6 +42,7 @@ nivelconfianza = 0.90
 zsum.test(mean.x=32,sigma.x=6, n.x=50,conf.level=0.90)
 
 # EJ 2
+# A)
 alfa = 0.01
 sigma = 16
 mu0 = -4
@@ -56,4 +58,14 @@ for(i in v){
 # Propoción de rechazo
 no_rc_prop = (no_rc / 10^4) 
 
-
+# B)
+mu0 = -4
+x = rnorm(50, mean=-4, sd=sqrt(16))
+x_techo = mean(x)
+prop = 0
+for(Xn in v){
+  add_to_prop = abs(Xn - mu0) > abs(x_techo - mu0)
+  if(add_to_prop){
+    prop = prop + 1
+  }
+}
