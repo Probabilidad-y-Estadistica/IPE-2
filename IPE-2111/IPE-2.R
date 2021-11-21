@@ -1,3 +1,4 @@
+library(BSDA)
 v = (1:10^4)
 
 
@@ -25,25 +26,10 @@ legend("topleft",
        lty = 1, col = c("grey","orange"), lwd =1, box.lty =1)
 
 
-# Sobre el histograma graficamos la densidad de la distribución normal estándar
-lines(s, 
-      dnorm(s, mean = -4, sd = 16),
-      lty = 1, 
-      lwd = 2)
-
-polygon(s, 
-        dnorm(s, mean = -4, sd = 16), 
-        col = rgb(1, 0, 0, alpha = 0.5))
-# Por último agregamos una leyenda para visualizar claramente los resultados  
-# y cambiamos la escala del eje
-axis(1, at=s,las=1)
-legend("topleft", 
-       legend = c("Promedio estandarizado",
-                  "Distribución normal estándar"),
-       lty = 1, col = c("grey","red"), lwd =1, box.lty =1)
 #Parte c)
 #10^4 intervalos de confianza con confianza 95%
-n <- 50    # El tamaño válido de la muestra
+me = mean(v) #La media
+z = 1.96 #Cuando tenes 95% de confianza
 media <- 32 # la media 
 desv <- 6  # La desviación estándar. Datos históricos
 nivelconfianza = 0.90
@@ -84,9 +70,6 @@ prop.test(no_rc_prop,n=50,p=0.9, alternative='two.sided', conf.level = 0.95, cor
 
 
 #C)
-no = (pnorm(abs(x_techo - mu0)*sqrt(50))/16)*2
+no = qnorm((abs(x_techo - mu0)*sqrt(50))/16)*2
 
-no
-
-qnorm(1-0.025)
 
