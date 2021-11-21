@@ -71,7 +71,6 @@ extremoRC = (sigma * z/ sqrt_n)
 rechazo = 0
 for(i in 1:10^4){
   #evaluamos si la region critica y contamos los rechazos de H0
-  print(abs(vPromedios[i] - (-4)))
   if(abs(vPromedios[i] - (-4)) > extremoRC) {
     rechazo = rechazo + 1
   }
