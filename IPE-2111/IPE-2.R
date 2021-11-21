@@ -82,17 +82,22 @@ propRechazo
 
 
 # B)
+#presentamos muestra fija a usar en parte B Y C
 muestra = rnorm(50, mean=-4, sd=sqrt(16))
 
 mu0 = -4
+#promedio de la muestra
 promedioX = mean(muestra)
+#estadistico observado dado en la letra
 estadisticoObservado = abs(promedioX - mu0)
+#contador que cuenta cuando se cumple la desugualdad
 cumpleDesigualdad = 0
 for(i in 1:10^4){
   if((abs(vPromedios[i] - mu0)) > estadisticoObservado){
     cumpleDesigualdad = cumpleDesigualdad + 1
   }
 }
+#estimacion del p valor haciendo una proporcion de los exitos dividido muestra total
 estimacionP_valor = cumpleDesigualdad/10^4
 estimacionP_valor
 
@@ -104,6 +109,7 @@ estimacionP_valor
 valorAbs = abs(promedioX - mu0)
 raiz = sqrt(50)
 sigma = 16
+#esta echacion corresponde con el desarrollo planteado en el documento
 pValor = (1-(pnorm(((valorAbs*raiz))/sigma)))*2
 pValor
 
