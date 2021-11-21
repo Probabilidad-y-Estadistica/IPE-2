@@ -84,6 +84,9 @@ prop.test(no_rc_prop,n=50,p=0.9, alternative='two.sided', conf.level = 0.95, cor
 
 
 #C)
-no = qnorm((abs(x_techo - mu0)*sqrt(50))/16)*2
+no = (pnorm(abs(x_techo - mu0)*sqrt(50))/16)*2
 
+no
+
+qnorm(1-0.025)
 
