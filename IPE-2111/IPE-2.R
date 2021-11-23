@@ -1,4 +1,4 @@
-library(BSDA)
+#library(BSDA)
 vPromedios = (1:10^4)
 vExtSup = (1:10^4)
 vExtInf = (1:10^4)
@@ -6,12 +6,14 @@ vExtInf = (1:10^4)
 for(i in 1:10^4){
   #generamos la muestra tama�o 50
   z=rnorm(50, mean=-4, sd=4)
-  #calculamos el promedio de la muestra anterior 
-  promedio <- mean(z)
+  #calculamos el promedio de la muestra anterior
+  
+  promedio <- mean(z)#Preguntar esto
+  
   #guardo en variables los valores que voy a usar en la qt.
   a = (1-(0.05/2))
   b = (50 -1)
-  ErrorE = 4/sqrt(50)
+  ErrorE = sd(z)/sqrt(50)
   #calculamos extremos inferiores y superiores de cada muestra
   ExtremoInf <- promedio-(ErrorE*qt(a,b))
   ExtremoSup <- promedio+(ErrorE*qt(a,b))
@@ -25,17 +27,19 @@ for(i in 1:10^4){
 
 # Presentamos en un histograma los valores obtenidos
 h <- hist(vPromedios, breaks = 100, density = 10,
-          ylab = "Densidad", xlab = "x", main = "Promedio estandarizados y distribución normal estándar") 
-xfit <- seq(min(vPromedios), max(vPromedios), length = 40) 
-yfit <- dnorm(xfit, mean = mean(vPromedios), sd =sd(vPromedios)) 
+          ylab = "Densidad", xlab = "x", main = "Promedio  y distribucion normal") 
+xfit <- seq(min(vPromedios), max(vPromedios), length = 40)
+
+yfit <- dnorm(xfit, mean = -4, sd =sqrt(0.32)) #preguntar esto
+
 yfit <- yfit * diff(h$mids[1:2]) * length(vPromedios) 
 lines(xfit, yfit, col = "orange", lwd = 2)
-# Por último agregamos una leyenda para visualizar claramente los resultados  
+#agregamos una leyenda para visualizar claramente los resultados  
 # y cambiamos la escala del eje
 axis(1, at=s,las=1)
 legend("topleft", 
-       legend = c("Promedio estandarizado",
-                  "Distribución normal estándar"),
+       legend = c("Promedio",
+                  "Distribucion normal"),
        lty = 1, col = c("grey","orange"), lwd =1, box.lty =1)
 
 
@@ -62,7 +66,7 @@ proporcion
 # EJ 2
 # A)
 alfa = 0.01
-sigma = 16
+sigma = 4
 sqrt_n = sqrt(50)
 z = qnorm(1-(alfa/2))
 #calculamos el extremos de la region critica a partir de las variables definidas arriba
@@ -83,8 +87,8 @@ propRechazo
 # B)
 #presentamos muestra fija a usar en parte B Y C
 muestra = rnorm(50, mean=-4, sd=sqrt(16))
-
 mu0 = -4
+
 #promedio de la muestra
 promedioX = mean(muestra)
 #estadistico observado dado en la letra
@@ -107,7 +111,7 @@ estimacionP_valor
 
 valorAbs = abs(promedioX - mu0)
 raiz = sqrt(50)
-sigma = 16
+sigma = 4
 #esta echacion corresponde con el desarrollo planteado en el documento
 pValor = (1-(pnorm(((valorAbs*raiz))/sigma)))*2
 pValor
